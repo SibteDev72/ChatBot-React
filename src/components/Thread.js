@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useStore } from '../store/session-store';
+import React, { useEffect, useState, useRef } from 'react'
+import { useStore } from '../store/utility-store';
 import { Typewriter } from 'react-simple-typewriter'
 
 function Thread() {
@@ -10,21 +10,29 @@ function Thread() {
     chatbotResponse: state.chatbotResponse,
   }))
   const [thread, setThread] = useState([])
+  const lastDivRef = useRef(null);
 
   useEffect(() => {
-    setThread([...thread, { actor: 'user', loading:'true', message: userMessage[userMessage.length - 1]}]) 
+      if(lastDivRef.current !== null){
+        lastDivRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+  }, [thread]);
+
+  useEffect(() => {
+    setThread([...thread, { actor: 'user', message: userMessage[userMessage.length - 1]}]) 
   }, [userMessage])
 
   useEffect(() => {
-    setThread([...thread, { actor: 'bot', loading:'false', message: chatbotResponse[chatbotResponse.length - 1]}]) 
+    setThread([...thread, { actor: 'bot', message: chatbotResponse[chatbotResponse.length - 1]}]) 
   }, [chatbotResponse])
 
   return (
     <div className='w-[90vw] h-[72vh] my-8 overflow-y-auto bg-[#222222] text-gray-300 border border-gray-300 rounded-lg sm:w-[90vw] sm:h-[65vh]'>
         {
           thread.map((th, index) => (
-              <div key={index} className='flex flex-col my-4'>
-                <div 
+              <div key={index}
+              className='flex flex-col my-4'>
+                <div ref={lastDivRef}
                 className={th.actor === 'user' && th.message !== undefined ? 'self-end flex items-start mx-4 my-2 max-w-[18rem] h-fit sm:max-w-[50rem]' : 'hidden'}>
                   <p
                   className='py-2 px-3 rounded-lg bg-black shadow-sm shadow-gray-300'>
@@ -50,7 +58,7 @@ function Thread() {
           ))
         }
         <div className='flex justify-center w-full'>
-        <div
+          <div
           className={ loading === false ? 'hidden' :
           'flex items-center justify-center my-2 w-[15rem] h-[3rem] rounded-lg bg-black shadow-sm shadow-gray-300'}>
             <p className='text-1xl mr-2'>Looking for Response</p>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Thread from './Thread'
-import { useStore } from '../store/session-store';
+import { useStore } from '../store/utility-store';
 import { postApiChatBot } from '../Api/chatbot';
 
 function Content() {
