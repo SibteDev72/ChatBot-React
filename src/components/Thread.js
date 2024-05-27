@@ -4,9 +4,11 @@ import { Typewriter } from 'react-simple-typewriter'
 
 function Thread() {
 
-  const userMessage = useStore((state) => state.userMessage )
-  const loading = useStore((state) => state.loading )
-  const chatbotResponse = useStore((state) => state.chatbotResponse )
+  const { userMessage, loading, chatbotResponse } = useStore((state) => ({
+    userMessage: state.userMessage,
+    loading: state.loading,
+    chatbotResponse: state.chatbotResponse,
+  }))
   const [thread, setThread] = useState([])
 
   useEffect(() => {
