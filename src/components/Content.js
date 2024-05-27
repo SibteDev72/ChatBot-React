@@ -25,10 +25,10 @@ function Content() {
   }
 
   return (
-    <div className='w-full h-[90vh] bg-[#222222] flex justify-center sm:h-[85vh]'>
+    <div className='w-full h-[90vh] bg-[#222222] flex flex-col items-center justify-center sm:h-[85vh]'>
         <Thread />
         <form onSubmit={(e) => submitHandler(e)} 
-        className='fixed bottom-6 flex justify-between items-center w-[22rem] h-[3rem] bg-[#222222] text-gray-300 border border-gray-300 rounded-lg sm:w-[50rem] sm:bottom-4'>
+        className='flex justify-between mt-6 items-center w-[22rem] h-[3rem] bg-[#222222] text-gray-300 border border-gray-300 rounded-lg sm:w-[50rem] sm:bottom-4'>
           <input 
           className='w-[18rem] bg-[#222222] h-[2.87rem] mx-2 text-gray-300 outline-0 sm:w-[46rem]'  
           placeholder='Type Message...'

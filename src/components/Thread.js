@@ -27,7 +27,7 @@ function Thread() {
   }, [chatbotResponse])
 
   return (
-    <div className='w-[90vw] h-[72vh] my-8 overflow-y-auto bg-[#222222] text-gray-300 border border-gray-300 rounded-lg sm:w-[90vw] sm:h-[65vh]'>
+    <div className='w-[90vw] h-[72vh] mt-4 overflow-y-auto bg-[#222222] text-gray-300 border border-gray-300 rounded-lg sm:w-[90vw] sm:h-[65vh]'>
         {
           thread.map((th, index) => (
               <div key={index}
